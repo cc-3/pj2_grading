@@ -64,7 +64,8 @@ char* get_line(char *buffer, char **line){
 int main(){
    char *buffer = (char*)malloc(4000*sizeof(char));
    writeTest();
-   system("gcc -o ensamblador ensamblador.s");
+   /*MODIFIQUEN ESTA LINEA DEPENDIENDO DE SUS ARCHIVOS*/
+   system("gcc -o ensamblador symtab.c ensamblador.s");
    FILE *f = popen("./ensamblador grading_b.txt","r");
    int i = 0;
    while(1){
@@ -74,7 +75,7 @@ int main(){
       }
       buffer[i++]=c;
    }
-   char *aux_buffer = ignore_lines(buffer,15);
+   char *aux_buffer = ignore_lines(buffer,22);
    char *line = (char*)malloc(100*sizeof(char));
 
    i = 0;
