@@ -8,9 +8,9 @@ char *tests[] = {"B.EQ label1\n","B.NE label2\n","B.HS label1\n",
                  "B.LO label2\n","B.MI my_beautiful_long_label___\n","B.VS label1\n",
                  "B.GE label2\n","B.LT label1\n","B.LE my_beautiful_long_label___\n",
                  "B.GT label2\n"};
-char *answers[] = {"0x91003da5\n","0xf106e1fd\n","0xb10087a0\n","0xd100528a\n",
-                   "0xd28178c0\n","0x92800f6a\n","0xf284d824\n","0x91003083\n",
-                   "0xf10084a4\n","0x92808c7d\n"};
+char *answers[] = {"0x54000040\n","0x54000081\n","0x54000002\n","0x54000043\n",
+                   "0x54000084\n","0x54ffffa6\n","0x54ffffea\n","0x54ffff6b\n",
+                   "0x5400000d\n","0x54ffff8c\n"};
 
 char* ignore_lines(char *buffer, int lines){
    if(lines < 0){
