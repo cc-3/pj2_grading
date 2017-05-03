@@ -84,8 +84,8 @@ int main(){
       aux_buffer = get_line(aux_buffer,&line);
       printf(".............................\nInst: %sObtenido: %sEsperado: %s",tests[i],line,answers[i]);
       if(!strcmp(line,answers[i])){
-	  total+=100.0/NUM_TESTS;
-          printf(" (+%.2f)\n",100.0/NUM_TESTS);
+	  	total+=100.0/NUM_TESTS;
+	  	printf(" (+%.2f)\n",100.0/NUM_TESTS);
       }else{
          puts(" (+0.00)");
       }

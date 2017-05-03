@@ -2,15 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NUM_TESTS 10
+#define NUM_TESTS 4
+#define EXTRA_LINES 0
 
-char *tests[] = {"ADD x5, x13, #15\n","SUBS x29, x15, #440\n","ADDS x0, x29, #33\n",
-                 "SUB x10, x20, #20\n","MOV x0, #3014\n","MOVN x10, #123\n",
-                 "MOVK x4, #9921\n","\tADD x3, x4, #12\n","\tSUBS x4, x5,   #33   \n",
-                 "MOVN x29, \t#1123\n"};
-char *answers[] = {"0x91003da5\n","0xf106e1fd\n","0xb10087a0\n","0xd100528a\n",
-                   "0xd28178c0\n","0x92800f6a\n","0xf284d824\n","0x91003083\n",
-                   "0xf10084a4\n","0x92808c7d\n"};
+char *tests[] = {"B main2\n","BL main2\n",
+                 "B label1\n","BL label1\n"};
+
+char *answers[] = {"0x14000003\n","0x94000002\n",
+                   "0x14000000\n","0x97ffffff\n"};
 
 char* ignore_lines(char *buffer, int lines){
    if(lines < 0){
@@ -29,10 +28,17 @@ char* ignore_lines(char *buffer, int lines){
 }
 
 void writeTest(){
-   FILE *f = fopen("grading_i.txt","w");
+   FILE *f = fopen("grading_b_bl.txt","w");
    int count;
    for(count = 0; count < NUM_TESTS; count++){
-      fprintf(f,"%s",tests[count]);
+      if(count == 0){
+    fprintf(f,".text\nmain:\n");
+      }else if(count == 2){
+         fprintf(f,"label1:\n");
+      }else if(count == 3){
+         fprintf(f,"main2:\n");
+      }
+      fprintf(f,"\t%s",tests[count]);
    }
    fclose(f);
 }
@@ -55,8 +61,9 @@ char* get_line(char *buffer, char **line){
 int main(){
    char *buffer = (char*)malloc(4000*sizeof(char));
    writeTest();
-   system("gcc -o ensamblador ensamblador.s");
-   FILE *f = popen("./ensamblador grading_i.txt","r");
+   /*MODIFIQUEN ESTA LINEA DEPENDIENDO DE SUS ARCHIVOS*/
+   system("gcc -o ensamblador symtab.c ensamblador.s");
+   FILE *f = popen("./ensamblador grading_b_bl.txt","r");
    int i = 0;
    while(1){
       char c = fgetc(f);
@@ -65,7 +72,7 @@ int main(){
       }
       buffer[i++]=c;
    }
-   char *aux_buffer = ignore_lines(buffer,15);
+   char *aux_buffer = ignore_lines(buffer,EXTRA_LINES);
    char *line = (char*)malloc(100*sizeof(char));
 
    i = 0;
@@ -74,8 +81,8 @@ int main(){
       aux_buffer = get_line(aux_buffer,&line);
       printf(".............................\nInst: %sObtenido: %sEsperado: %s",tests[i],line,answers[i]);
       if(!strcmp(line,answers[i])){
-	      total+=100.0/NUM_TESTS;
-         printf(" (+%.2f)\n",100.0/NUM_TESTS);
+      total+=100.0/NUM_TESTS;
+      printf(" (+%.2f)\n",100.0/NUM_TESTS);
       }else{
          puts(" (+0.00)");
       }
