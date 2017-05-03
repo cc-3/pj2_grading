@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define NUM_TESTS 5
-#define EXTRA_LINES 5
+#define EXTRA_LINES 10
 
 char *tests[] = {"LDR x0, [x0, #3]\n","LDR x18, [x15, #x11]\n","STR x25, [x29, #4]\n",
                  "LDRB w10, [x10, #8]\n","STRB w4, [x0, #0]\n"};
