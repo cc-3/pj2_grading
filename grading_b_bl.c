@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define NUM_TESTS 4
-#define EXTRA_LINES 0
+#define EXTRA_LINES 13
 
 char *tests[] = {"B main2\n","BL main2\n",
                  "B label1\n","BL label1\n"};
