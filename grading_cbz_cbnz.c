@@ -3,13 +3,13 @@
 #include <string.h>
 
 #define NUM_TESTS 4
-#define EXTRA_LINES 13
+#define EXTRA_LINES 14
 
-char *tests[] = {"CBZ x1, main1\n","CBZ x2, label3\n",
-                 "CBNZ x2, label1\n","CBNZ  x35, label2\n"};
+char *tests[] = {"CBZ x1, label1\n","CBZ x2, label3\n",
+                 "CBNZ x2, label1\n","CBNZ  x25, label2\n"};
 
-char *answers[] = {"0x14000003\n","0x94000002\n",
-                   "0x14000000\n","0x97ffffff\n"};
+char *answers[] = {"0xb4000021\n","0xb4000042\n",
+                   "0xb5ffffe2\n","0xb5fffff9\n"};
 
 char* ignore_lines(char *buffer, int lines){
    if(lines < 0){
@@ -33,12 +33,12 @@ void writeTest(){
    for(count = 0; count < NUM_TESTS; count++){
       if(count == 0){
     fprintf(f,".text\nmain:\n");
-      }else if(count == 2){
+      }else if(count == 1){
          fprintf(f,"label1:\n");
-      }else if(count == 3){
+      }else if(count == 2){
          fprintf(f,"label2:\n");
-      }else if(count == 5){
-         frpintf(f,"label3:\n");
+      }else if(count == 3){
+         fprintf(f,"label3:\n");
       }
       fprintf(f,"\t%s",tests[count]);
    }
