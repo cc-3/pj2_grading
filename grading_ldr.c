@@ -5,9 +5,9 @@
 #define NUM_TESTS 5
 #define EXTRA_LINES 10
 
-char *tests[] = {"LDR x0, [x0, #3]\n","LDR x18, [x15, #x11]\n","STR x25, [x29, #4]\n",
+char *tests[] = {"LDR x0, [x0, #3]\n","LDR x18, [x15, #11]\n","STR x25, [x29, #4]\n",
                  "LDRB w10, [x10, #8]\n","STRB w4, [x0, #0]\n"};
-char *answers[] = {"0x8b1301c4\n","0xeb0b01f2\n","0x8a1d03a0\n","0xca01014a\n","0x8b1f0000\n"};
+char *answers[] = {"0xf8403000\n","0xf840b1f2\n","0xf80004b9\n","0x3940214a\n","0x39000004\n"};
 
 char* ignore_lines(char *buffer, int lines){
    if(lines < 0){
