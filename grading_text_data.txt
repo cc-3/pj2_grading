@@ -1,6 +1,6 @@
 .text
 main:
-	ret
+	RET
 .data
 .text
 .data
@@ -10,8 +10,8 @@ main:
 .text
 .data
 .text
-	ret
-	ret
+	RET
+	RET
 .data
 .text
-	ret
+	RET

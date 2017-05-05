@@ -1,0 +1,6 @@
+.data
+hello:
+   .asciz "Hola mundo!\n"
+.text
+main:
+   RET
