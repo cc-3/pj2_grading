@@ -1,0 +1,17 @@
+.text
+main:
+	ret
+.data
+.text
+.data
+.data
+.data
+.text
+.text
+.data
+.text
+	ret
+	ret
+.data
+.text
+	ret

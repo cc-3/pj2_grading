@@ -64,7 +64,6 @@ int main(){
    char *buffer = (char*)malloc(4000*sizeof(char));
    writeTest();
    /*MODIFIQUEN ESTA LINEA DEPENDIENDO DE SUS ARCHIVOS*/
-   system("gcc -o ensamblador symtab.c ensamblador.s");
    FILE *f = popen("./ensamblador grading_cbz_cbnz.txt","r");
    int i = 0;
    while(1){

@@ -53,7 +53,6 @@ char* get_line(char *buffer, char **line){
 int main(){
    char *buffer = (char*)malloc(4000*sizeof(char));
    writeTest();
-   system("gcc -o ensamblador ensamblador.s");
    FILE *f = popen("./ensamblador grading_r.txt","r");
    int i = 0;
    while(1){
