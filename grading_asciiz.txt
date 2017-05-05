@@ -1,6 +1,5 @@
 .data
-hello:
-   .asciz "Hola mundo!\n"
+hello: .asciz "Hola mundo!\n"
 .text
 main:
    RET

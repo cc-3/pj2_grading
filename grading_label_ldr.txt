@@ -1,0 +1,9 @@
+.data
+goodbye: .space 10
+hello: .asciz "holaaa!"
+.text
+main:
+main2:
+   LDR x0,=goodbye
+   LDR x0,=hello
+   RET
